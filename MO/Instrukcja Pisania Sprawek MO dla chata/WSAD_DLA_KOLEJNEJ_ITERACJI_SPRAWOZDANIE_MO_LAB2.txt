@@ -1,0 +1,683 @@
+WSAD DLA KOLEJNEJ INSTANCJI CHATGPT
+METODY OPTYMALIZACJI - LABORATORIUM 2
+SZCZEGÓŁOWA SPECYFIKACJA SPRAWOZDANIA, STYLU PRACY I PREFERENCJI UŻYTKOWNIKA
+Wersja: 2026-11-06
+================================================================================
+
+0. NAJWAŻNIEJSZE ZASADY - PRZECZYTAJ PRZED ROZPOCZĘCIEM
+--------------------------------------------------------------------------------
+Ten tekst jest instrukcją przejęcia pracy od poprzedniej instancji ChatGPT.
+Powstał na podstawie wielu iteracji opracowywania sprawozdania z Laboratorium 1,
+oficjalnej formatki prowadzącej oraz znanej paczki roboczej Laboratorium 2.
+
+NAJWAŻNIEJSZE PREFERENCJE UŻYTKOWNIKA:
+- Oczekuje GOTOWEGO, rzeczywiście działającego, edytowalnego dokumentu Word,
+  a przy oddaniu również poprawnego PDF. Nie zadowala go sam opis, co zrobić.
+- Nie chce przesadnie akademickiego, wykładowego ani "instruktażowego" języka.
+  Ma to być porządne, zwyczajne sprawozdanie studenckie, napisane bezosobowo.
+- Zachowuj jego istniejący układ, opisy, równania, zdjęcia i kolejność, o ile
+  nie przeszkadzają w poprawności. Nie pisz wszystkiego od nowa dla efektu.
+- Konsekwentnie odróżniaj wyniki rzeczywiście obliczone w MATLAB-ie od danych
+  wstępnych, wartości referencyjnych, symulacji Pythonem lub przewidywań.
+- Wykresy i tabele muszą wynikać z danych, być czytelne i jednoznacznie podpisane.
+- Nie upiększaj sprawozdania kolorowymi polami w tabelach lub dekoracjami.
+- Jeśli użytkownik podaje poprawki do zrobienia później, traktuj je jako listę
+  zmian; nie generuj nowego Worda, dopóki o to nie poprosi.
+- Nie twierdź, że uruchomiłeś MATLAB, jeśli tego nie zrobiłeś.
+- Nie dodawaj na siłę nowych twierdzeń, wykresów, obliczeń ani eksperymentów.
+- Gdy użytkownik wybiera styl, jego preferencja ma pierwszeństwo przed
+  estetycznym gustem asystenta, o ile nie narusza obowiązkowego wymogu.
+
+PRIORYTETY DECYZYJNE:
+1) instrukcja konkretnego Laboratorium 2 i prawdziwe wyniki z MATLAB-a;
+2) obowiązkowa formatka prowadzącej;
+3) zatwierdzony przez użytkownika układ i sposób zapisu z Laboratorium 1;
+4) dopiero potem ogólne akademickie "dobre praktyki".
+
+Gdy punkty 2 i 3 są w konflikcie, wyjaśnij konflikt wprost i wybierz zgodność
+z oficjalnym wymaganiem. Przykład: użytkownik kiedyś chciał usunąć napis
+"Strona 1" ze stopki, jednak formatka WYMAGA numeracji stron. W zaakceptowanym
+sprawozdaniu Lab 1 numeracja finalnie występowała. Zachowaj dyskretną numerację.
+
+1. JAKIE MATERIAŁY NALEŻY NAJPIERW ODCZYTAĆ
+--------------------------------------------------------------------------------
+Przed pisaniem lub modyfikacją sprawozdania zdobądź i sprawdź:
+A) "Sprawozdanie_formatka.pdf" - OFICJALNE wymagania edytorskie i struktura.
+B) Oryginalną instrukcję/zadanie Laboratorium 2 - określa, co jest obligatoryjne.
+   NIE ZASTĘPUJ tej instrukcji własną interpretacją albo instrukcją Lab 1.
+C) Dane grupy 4 i kody prowadzącej - aby poprawnie opisać model, sygnały,
+   estymowane parametry, funkcję celu i algorytmy.
+D) Ostateczne wyniki MATLAB-a (wydruk, MAT/CSV/Excel i wykresy) - główne źródło
+   wartości liczbowych. Nie ufaj bez sprawdzenia wstępnie wypełnionemu szablonowi.
+E) "MO2_Lab2_grupa4_POPRAWIONY.zip" - istniejąca paczka robocza Lab 2;
+   zawiera m.in. Main.m, pliki danych, funkcje prowadzącej, Excel, teorię i PNG.
+F) Finalny raport Lab 1 jako wzór STYLU, nie jako źródło liczb do Lab 2:
+   "Sprawozdanie_MO1_poprawione(1).pdf" (39 stron) albo poprawione pliki Word.
+G) Ewentualny własny Word użytkownika dla Lab 2 - jeżeli zostanie dostarczony,
+   jego układ i wybrane równania/obrazy traktuj jako bazę do rozbudowy.
+
+Stan udokumentowany w poprzedniej rozmowie (NIE mylić z formalną instrukcją Lab 2):
+- W Laboratorium 2 grupa 4 identyfikuje parametry m, l i I modelu wahadła
+  odwróconego / układu wózek-wahadło na podstawie przebiegów pomiarowych.
+- Rozważane metody: lsqnonlin i fmincon.
+- Dane: dane1_wah_grupa4.mat; sygnały m.in. t, u, położenie wózka, kąt wahadła.
+- Dostępne są funkcje prowadzącej do modelu i symulacji.
+- Paczka zawiera przykładowe 5 PNG oraz workbook MO2_grupa4.xlsx.
+- Zgodnie z Main.m w paczce wstępnie przyjęto p0=[0.4 0.1 0.35],
+  lb=[1e-6 1e-6 1e-6], ub=[2 1 1]; dla fmincon w kodzie ustawiono SQP.
+- Sposób użycia, wartości referencyjne i końcowe liczby trzeba POTWIERDZIĆ
+  faktycznym uruchomieniem MATLAB-a i treścią instrukcji prowadzącej.
+- Wstępne liczby/obrazy w szablonie Excel i paczce były częściowo otrzymane
+  przez Python/SciPy; NIE PRZYPISUJ im statusu ostatecznych wyników MATLAB-a.
+- Nie kopiuj do Lab 2 rozważań o Matyas, Styblinski-Tang, Cardanie, Sylvesterze,
+  punktach siodłowych albo badaniu TolX/MaxIter, jeżeli nie żąda tego Lab 2.
+
+2. OBOWIĄZKOWE WYMAGANIA Z OFICJALNEJ FORMATKI
+--------------------------------------------------------------------------------
+Wymagania pochodzą z "Sprawozdanie_formatka.pdf":
+- Forma oddania: elektroniczne sprawozdanie PDF oraz kody programów w ZIP/RAR.
+- Papier A4.
+- Czcionka Times New Roman.
+- Tekst 11-12 pkt.
+- Interlinia pojedyncza (NIE 1,5).
+- Marginesy 2-2,5 cm.
+- Wyrównanie tekstu do obu marginesów (justowanie).
+- Numeracja stron obowiązkowa.
+- WSZYSTKIE rysunki i tabele mają mieć numer oraz podpis.
+- WSZYSTKIE rysunki i tabele muszą mieć odwołanie w tekście.
+- Osie wykresów opisane; podawać jednostki, jeżeli występują.
+- Użyte symbole mają być wyjaśnione.
+- Oświadczenie o wykorzystaniu AI jest OBOWIĄZKOWE i składane osobno przez
+  każdego studenta; jego zakres ma odpowiadać temu, co naprawdę robiono.
+
+Struktura wskazana przez prowadzącą:
+1. Treść zadania / sformułowanie problemu.
+2. Część teoretyczna.
+3. Wyniki badań.
+4. Wnioski / podsumowanie.
+5. Oświadczenie o wykorzystaniu narzędzi AI.
+
+Miejsca 1-4 powinny być odpowiednio opisane, a część 3 nie może składać się
+wyłącznie ze zdjęć i tabel bez choćby krótkich obserwacji.
+
+Oficjalne przykłady podpisów: "Rys. 1. ...", "Tabela 1. ...".
+Nie dopisuj mechanicznie "Źródło: opracowanie własne" pod każdym rysunkiem.
+Takie oznaczenie jest tutaj zbędne, chyba że konkretna ilustracja pochodzi
+z zewnętrznego źródła - wówczas podaj prawdziwe źródło.
+
+3. DOKŁADNY STYL EDYTORSKI ZATWIERDZONY PRZEZ UŻYTKOWNIKA
+--------------------------------------------------------------------------------
+Format strony i tekstu:
+- A4 w pionie, marginesy 2,5 cm (mieszczą się w zakresie formatki).
+- Times New Roman, podstawowy tekst 11 pkt, czarny.
+- Pojedyncza interlinia; nie stosuj nienaturalnie zwiększonych interlinii.
+- Tekst zasadniczy justowany, bez chaotycznych pierwszych wcięć.
+- Akapity wizualnie oddzielone małymi, jednakowymi odstępami; tekst nie może
+  być "zbity do bólu". Po nagłówku pozostaw rozsądny mały odstęp.
+- Wszystkie rozdziały i podrozdziały zaczynają się na TEJ SAMEJ wysokości
+  względem lewego marginesu: bez przypadkowych tabulatorów i ręcznych spacji.
+- Unikaj wiszących pojedynczych zdań i stron niemal pustych.
+
+Typografia nagłówków:
+- Nagłówki główne ("1. ...", "2. ...") - 13 pkt, pogrubione.
+- Podrozdziały ("2.1. ...", "3.2. ...") - 12 pkt, pogrubione.
+- Małe sekcje w podrozdziale, np. "Wyznaczenie parametrów", "Ocena dopasowania"
+  - 11 pkt, pogrubione. Nie zmieniaj ich na 13 lub 14 pkt.
+- Zachowuj tę samą hierarchię, konsekwentną numerację i równe odstępy.
+- Nie rób z każdego kroku wyprowadzenia osobnego dużego rozdziału.
+
+Podpisy i numerowanie:
+- Podpisy "Rys. N." oraz "Tabela N." - preferowana czcionka 9 pkt,
+  wyśrodkowane, niewytłuszczone albo oszczędnie wyróżnione.
+- Tytuł tabeli nad tabelą, podpis rysunku pod rysunkiem.
+- Numeracja ciągła: Rys. 1, Rys. 2 itd.; Tabela 1, Tabela 2 itd.
+- Wzory: preferowana prosta numeracja (1), (2), (3)...; odrzucono styl
+  wielopoziomowy typu (2.2.2.1).
+- Użyj prawdziwych obiektów równań Worda (OMML), gdy dokument ma być edytowalny.
+- Równania wyśrodkowane, numery po prawej; w miarę możliwości nie używaj
+  ręcznego wstawiania 20 spacji do przesunięcia numeru.
+- Między kolejnymi wzorami daj NIEWIELKI, lecz widoczny odstęp. Nie sklejaj
+  kilku długich wyprowadzeń w jedną niezrozumiałą ścianę.
+- Nie rozdzielaj jednego wielowierszowego wzoru między stronami.
+- Unikaj samotnych numerów równań na innej stronie niż równanie.
+
+Tabele:
+- BIAŁE tło, CZARNE krawędzie; bez nieuzasadnionych kolorowych nagłówków.
+- Wyśrodkowane na stronie, regularne szerokości kolumn.
+- Zawartość w miarę możliwości wyśrodkowana w poziomie i pionie.
+  Długie objaśnienia mogą być wyrównane do lewej dla czytelności.
+- Preferowany styl tabel wyników: parametry i miary w WIERSZACH, kolejne
+  warianty/algorytmy w KOLUMNACH. Przykład Lab 1 miał trzy warianty obok siebie.
+- Nie zastępuj tabel wynikowych układem "jeden eksperyment = jeden bardzo długi
+  wiersz" tylko dlatego, że łatwiej go automatycznie wygenerować.
+- Szerokość nie może uciąć wartości ani przesunąć etykiet.
+- Rozróżnij wartości dokładne, przybliżone i zera wynikające z zaokrągleń.
+- Rozdzielaj grupy wyników logicznie, nie przez chaotyczne kolorowanie.
+- Tabele pomocnicze W CZĘŚCI TEORETYCZNEJ również muszą mieć numery i podpisy.
+- Nie łam tabeli w sposób, który zostawi jedną komórkę na następnej stronie;
+  lepiej przenieść całość lub całą logiczną grupę wierszy.
+- 9-punktowe podpisy są preferencją użytkownika. Oficjalna formatka ogólnie
+  podaje 11-12 pkt; jeśli ktoś będzie rygorystycznie traktował to także dla
+  podpisów i tabel, zasygnalizuj ryzyko i zaproponuj bezpieczny kompromis.
+
+Zdjęcia i wykresy:
+- Tylko tyle wykresów, ile pozwala pokazać WSZYSTKIE istotne wyniki i różnice.
+  Użytkownik początkowo uważał 17 za mało, ale 216 pojedynczych grafik też nie
+  chce. Oczekuje ROZSĄDNEGO, kompletnego, przejrzystego wyboru.
+- W Lab 1 zatwierdzono zestawianie wykresów w blokach 2x2 - u góry metoda 1,
+  na dole metoda 2; po lewej funkcja celu, po prawej zmienne decyzyjne.
+- W Lab 2 taki układ wolno ZMODYFIKOWAĆ zgodnie z charakterem danych:
+  np. dwa wykresy odpowiedzi (położenie, kąt) oraz porównanie metod, parametry
+  w iteracjach i funkcja celu. Nie kopiuj układu na siłę.
+- Dla pary wykresów porównawczych stosuj te same osie i tę samą definicję
+  wielkości, chyba że odmienne skale są uzasadnione i jasno opisane.
+- Rysunki mogą być grupowane w jeden blok, jeśli mają wspólny sens; jeden
+  podpis może objaśnić położenie paneli i użyte kolory.
+- Po każdym bloku daj sensowny podpis: co jest na wykresie, dla jakiego
+  algorytmu, punktu startowego, przedziału, parametru lub wariantu.
+- Tytuły każdego panelu powinny być konkretne, nie "Wykres 1", "Przebieg".
+- Wszystkie linie, etykiety i legenda muszą być czytelne w PDF w skali 100%.
+- Jeśli stosujesz czarne pole wykresu, siatka może być szara, ale tytuł i
+  zewnętrzne opisy powinny mieć czarny kolor i dobry kontrast z białym tłem.
+  Unikaj szarych/bladych tytułów. Pilnuj widoczności osi i legend.
+- W Lab 1 używano niebieskiej linii dla funkcji celu / x1 i pomarańczowej
+  dla x2. To przykład spójności, nie sztywny kod kolorów dla Lab 2.
+- Legenda punktów scatter3: zawsze kieruj legendę do uchwytów punktów,
+  aby nie pojawiał się kwadrat od powierzchni surf() zamiast kółeczka.
+  Nie dotyczy to automatycznie wszystkich wykresów Lab 2.
+- Jednostki obowiązkowe: jeżeli model daje czas [s], położenie [m], kąt [rad],
+  parametry m [kg], l [m], I [kg*m^2], podpisz je odpowiednio.
+- Nie wstawiaj wykresów 2D/3D trajektorii tylko po to, by zwiększyć liczbę stron.
+  W Lab 1 użytkownik wyraźnie zdecydował zostawić wymagane dwie klasy
+  wykresów, a trajektorie przenieść na później.
+
+4. JĘZYK SPRAWOZDANIA - TO BARDZO WAŻNA PREFERENCJA
+--------------------------------------------------------------------------------
+Użytkownik odrzucił teksty zbyt długie, za bardzo formalne i brzmiące jak
+instrukcja laboratoryjna. Pisz stylem: rzeczowo, bezosobowo, naturalnie,
+zwięźle, ale nie telegramowo. Każde zdanie ma wnosić informację.
+
+DO:
+- "Celem ćwiczenia było porównanie..."
+- "Do badań wykorzystano..."
+- "Wyznaczono parametry modelu..."
+- "Na podstawie tabeli 2 można zauważyć, że..."
+- "Dla metody lsqnonlin uzyskano..., natomiast dla fmincon..."
+- "Różnica może wynikać z..., co potwierdza ..." (tylko gdy są dane)
+- "Oba przebiegi przedstawiono na rysunku 3."
+
+NIE:
+- "Porównaliśmy", "przeprowadziliśmy", "zrobiliśmy", "wykonaliśmy".
+- "Następnym krokiem jest", "teraz podstawiamy", "przyjrzyjmy się".
+- "W celu dogłębnej eksploracji multidyscyplinarnego spektrum...".
+- Rozdmuchane opisy oczywistej arytmetyki.
+- Automatyczne wstępy w rodzaju "Niniejsze kompleksowe opracowanie...".
+- Teksty reklamowe albo ocenne bez podstaw: "niezwykle znakomite wyniki".
+- Długie myślniki typograficzne "—" w zwykłych opisach. Użytkownik prosił
+  raczej o zwykły krótki łącznik "-" (tam, gdzie jest potrzebny).
+- Powtarzanie tego samego wniosku dosłownie pod tabelą, pod wykresem i potem
+  w podsumowaniu.
+
+Długość:
+- Sformułowanie problemu powinno być KRÓTKIE i zgodne z instrukcją,
+  a nie listą wszystkich pochodnych i eksperymentów dodatkowych.
+- Część teoretyczna: umiarkowana, tylko niezbędne zależności i wyjaśnienia.
+- Wyniki: krótki wstęp do każdego etapu, tabela/wykres, 2-5 zdań obserwacji.
+- Wnioski: podział na oddzielne etapy i końcowe wnioski ogólne.
+- Jeśli nie ma czego sensownego powiedzieć, nie twórz sztucznego akapitu.
+
+5. JAK OPISYWAĆ RÓWNANIA I WYPROWADZENIA
+--------------------------------------------------------------------------------
+Użytkownik wielokrotnie regulował stopień szczegółowości i ustalił kompromis:
+- Równań ma być TYLE, ABY DAŁO SIĘ ZROZUMIEĆ, SKĄD WYNIKA WYNIK.
+- Podaj wzór ogólny przed mniej oczywistą metodą, a potem podstawienie.
+- Nie ma obowiązku rozpisywania każdej banalnej pochodnej na dziesięć linii.
+- Nie podawaj dla ozdoby nazw rzadkich twierdzeń (np. odrzucono w Lab 1
+  odwoływanie się z nazwy do kryterium Sylvestera).
+- Jeśli stosujesz metodę Cardana, to wzór ogólny jest zasadny, ponieważ tak
+  wymagał konkretny problem w Lab 1. NIE używaj Cardana w Lab 2 bez powodu.
+- Wektory przedstawiaj pionowo, macierze jako zwyczajne nawiasowe macierze,
+  unikaj zapisu wektorów jako wierszy z transpozycją ^T, jeśli niepotrzebne.
+- Unikaj niestandardowego i trudnego do edycji sklejania równań ze znakami.
+- Nie podmieniaj edytowalnych wzorów na zrzuty ekranu.
+
+Zatwierdzone przez użytkownika wzorce nazw w Lab 1:
+- "Wyznaczenie punktów stacjonarnych".
+- "Określenie charakteru punktu stacjonarnego" / "Klasyfikacja punktów
+  stacjonarnych".
+- "Wyznaczenie minimum globalnego".
+- "Gradient i hesjan w punkcie optymalnym".
+To przykład poprawnej kolejności i precyzji, nie gotowy szablon do przeklejenia
+w Lab 2, gdzie problem dotyczy estymacji parametrów.
+
+W LAB 2 sensowniejsze tytuły mogą brzmieć:
+- "Model matematyczny układu".
+- "Dobór parametrów identyfikowanych".
+- "Funkcja błędu i sposób porównania odpowiedzi".
+- "Identyfikacja metodą lsqnonlin".
+- "Identyfikacja metodą fmincon".
+- "Ocena jakości dopasowania modelu".
+Decyzja zależy od faktycznych wymagań instrukcji i treści użytkownika.
+
+Interpretacja ma wynikać z matematyki, a nie być deklaracją bez uzasadnienia.
+W Lab 1 użytkownik słusznie zwracał uwagę, że "hesjan dodatni" bez wyjaśnienia
+nie mówi czytelnikowi, czemu to minimum, a "minimum globalne" nie może wziąć
+się znikąd. W Lab 2 analogicznie objaśnij, CZEMU minimalizacja błędu określa
+parametry modelu oraz CO oznaczają wartości błędów / ograniczeń.
+
+6. STRUKTURA ROZDZIAŁÓW DLA LABORATORIUM 2
+--------------------------------------------------------------------------------
+NIE implementuj bezmyślnie struktury Lab 1. Poniższy układ to ROBOCZA PROPOZYCJA,
+a nie cytat z instrukcji prowadzącej. Dopasuj do zadania i danych użytkownika.
+
+STRONA TYTUŁOWA
+- Tabela/karta wg oryginalnej formatki, z nazwą przedmiotu, prowadzącą,
+  danymi studentów, grupą laboratoryjną, terminem, datą oddania i tematem.
+- Zostaw pola do uzupełnienia, których nikt nie podał; nie wymyślaj numerów.
+- W dotychczasowym Lab 1 użytkownik lubił zachować konstrukcję dwukolumnową
+  nagłówka ze standardowej formatki; pilnuj odstępów komórek.
+
+1. SFORMUŁOWANIE PROBLEMU
+- 1, maksymalnie 2 krótkie akapity.
+- Wskazać problem identyfikacji parametrów, model i dwie metody optymalizacji.
+- Podać, co ma zostać porównane, nie zagłębiając się w implementację.
+- Nie wyliczać wszystkich szczegółów kodu ani dodatkowych obserwacji.
+
+2. CZĘŚĆ TEORETYCZNA
+- Opisać, jakie dane są mierzone i co oznaczają symbole.
+- Przedstawić model (tylko tyle, ile potrzebne i wynika z materiałów).
+- Wyjaśnić wektor parametrów p=[m; l; I] w pionowym zapisie i ich jednostki.
+- Wyjaśnić wektor reszt oraz funkcję celu (podstawa obu solverów).
+- Opisać różnicę: lsqnonlin przyjmuje wektor reszt, fmincon minimalizuje
+  funkcję skalarną; matematyczna zgodność celu wymaga potwierdzenia w kodzie.
+- Jeżeli użyto ograniczeń przedziałowych, wpisać rzeczywiste lb i ub.
+- Jeśli użyto modelu stanu, opisać go zgodnie z funkcjami prowadzącej;
+  nie dopisywać niepotwierdzonych równań fizycznych.
+- Podpunkty z krótkimi, pogrubionymi śródtytułami 11 pkt tam, gdzie są obliczenia.
+
+3. WYNIKI BADAŃ
+3.1. Założenia i zakres badań
+- DANE z grupy 4, punkt startowy, granice, metody, ustawienia rozwiązania.
+- Zwięźle, rozdzielone akapitami / prostą listą, nie ściana tekstu.
+- Różnicuj ustawienia NARZUCONE przez prowadzącą, domyślne MATLAB-a i
+  DODATKOWE dobrane w kodzie. Nigdy nie nazywaj własnej wartości "domyślną".
+3.2. Wyniki metody lsqnonlin
+- Ostateczne p, wartość funkcji celu, liczba iteracji/wywołań, exitflag.
+- Wykres porównania model-pomiar oraz obserwacja jakości dopasowania.
+3.3. Wyniki metody fmincon
+- Analogiczne dane i wykresy, z zachowaniem tego samego punktu odniesienia.
+3.4. Bezpośrednie porównanie metod
+- Tabela porównawcza.
+- Wspólne wykresy pomiar/odpowiedzi obu estymatorów.
+- Wykresy zmian parametrów oraz błędu/funkcji celu, jeśli są wymagane
+  i rzeczywiście zarejestrowane.
+- Obserwacje wynikające z KONKRETNYCH wartości i kształtu przebiegów.
+
+4. OBSERWACJE I WNIOSKI
+- Wnioski rozdzielone według etapów, nie jeden wielki blok tekstu.
+  Przykładowo: "Dokładność dopasowania", "Porównanie metod", "Przebieg
+  zbieżności", "Wpływ ograniczeń/ustawień" (tylko jeśli badano),
+  "Wnioski ogólne".
+- Podaj liczby ilustrujące wnioski, lecz nie przepisuj całych tabel.
+- Nie myl mniejszego błędu z gwarancją prawidłowej identyfikacji fizycznej,
+  a mniejszej liczby iteracji z mniejszym rzeczywistym czasem CPU.
+
+5. OŚWIADCZENIA AI
+- Osobny blok dla każdego studenta; sprawdź formatkę.
+- Nie zaznaczaj za użytkownika oświadczeń, jeśli nie potwierdził zakresu.
+- Gdy AI pomagało przy kodzie, obliczeniach, edycji lub analizie, należy
+  odzwierciedlić rzeczywisty zakres; pole "inne" może wymagać uzupełnienia.
+- Nie usuwaj tekstu obowiązkowego o samodzielności pracy.
+
+7. PREZENTACJA WYNIKÓW I TABEL - PRAKTYCZNA SPECYFIKACJA
+--------------------------------------------------------------------------------
+Niech każda tabela odpowiada konkretnemu pytaniu. Unikaj drukowania całych
+setek próbek sygnału jako wielostronicowej tabeli w Wordzie. Takie dane
+pozostaw w pliku Excel/CSV i pokaż najważniejsze wskaźniki oraz wykresy.
+
+Sugerowany przekrój tabeli porównawczej Lab 2 (PRZYKŁAD UKŁADU, NIE WYNIKI):
+
+Tabela N. Porównanie wyników identyfikacji parametrów modelu.
++-----------------------------+---------------------+---------------------+
+| Wielkość / parametr         | lsqnonlin           | fmincon             |
++-----------------------------+---------------------+---------------------+
+| m [kg]                      | wynik z MATLAB      | wynik z MATLAB      |
+| l [m]                       | wynik z MATLAB      | wynik z MATLAB      |
+| I [kg*m^2]                  | wynik z MATLAB      | wynik z MATLAB      |
+| Wartość J / SSE             | wynik z MATLAB      | wynik z MATLAB      |
+| RMSE położenia [m]          | wynik z MATLAB      | wynik z MATLAB      |
+| RMSE kąta [rad]             | wynik z MATLAB      | wynik z MATLAB      |
+| Liczba iteracji             | wynik z MATLAB      | wynik z MATLAB      |
+| Liczba wywołań funkcji      | wynik z MATLAB      | wynik z MATLAB      |
+| exitflag / warunek stopu    | wynik z MATLAB      | wynik z MATLAB      |
++-----------------------------+---------------------+---------------------+
+
+WAŻNE:
+- Nie wpisuj do tabeli ani jednego fikcyjnego wyniku "dla wypełnienia".
+- Jeśli p0, lb lub ub są wspólne, można wskazać je raz w 3.1.
+- Podawaj metodę z właściwą nazwą (lsqnonlin / fmincon) i w razie potrzeby
+  nazwę algorytmu fmincon (w roboczym Main.m: SQP), nie myl solvera z algorytmem.
+- Nie porównuj wartości J, jeśli obie metody korzystają z INNEJ definicji
+  skalowania funkcji celu; najpierw sprowadź je do wspólnej miary na tych
+  samych danych i jawnie opisz definicję.
+- Jeżeli lsqnonlin zwraca resnorm, wyjaśnij, czy jest sumą kwadratów reszt
+  czy inną miarą w danym kodzie i nie myl go z normą pojedynczego residuum.
+- Dla dwóch sygnałów z różnymi jednostkami nie opowiadaj o jednostce SSE
+  jako o jednej prostej jednostce bez wyjaśnienia definicji celu / wag.
+- Objaśnij, co oznaczają SSE, RMSE, exitflag i ewentualnie first-order optimality.
+- Precyzja w tabeli: wystarczająca do rozróżnienia wariantów; spójne miejsca
+  po przecinku, sensowna notacja naukowa 1,23e-06 przy bardzo małych liczbach.
+- W tabeli nie pisz "0", jeśli w rzeczywistości jest 1e-12 i ma to znaczenie.
+- Jeśli algorytm utknął w minimum lokalnym lub zatrzymał się przez limit,
+  nazwij to zgodnie z exitflag i oryginalnym komunikatem, nie upiększaj.
+
+Jak omawiać tabelę:
+DOBRZE: "W tabeli N zestawiono parametry zidentyfikowane obiema metodami.
+Dla lsqnonlin uzyskano RMSE położenia ... m, natomiast dla fmincon ... m.
+Różnica ... znajduje potwierdzenie w przebiegach na rysunku N."
+ŹLE: "Tabela przedstawia wyniki. Widoczne jest, że metoda pierwsza jest lepsza."
+
+Wzorcowy rytm podrozdziału:
+1) krótki akapit: jaki wariant lub metoda;
+2) Tabela N z prawdziwymi wynikami;
+3) 1-3 zdania z najistotniejszą różnicą i odwołaniem do tabeli;
+4) Rys. N lub blok wykresów;
+5) 1-3 zdania interpretacji, jeśli wykres rzeczywiście wnosi dodatkową informację.
+Można zmienić kolejność tabeli i rysunku, jeśli poprawia to czytelność.
+
+8. JAK DOBIERAĆ I OPISYWAĆ WYKRESY LAB 2
+--------------------------------------------------------------------------------
+A. Pomiary i odpowiedź modelu po identyfikacji lsqnonlin:
+- Na osi poziomej: czas t [s].
+- Osie pionowe: położenie wózka x [m], kąt wahadła phi [rad], jeżeli
+  jednostki są takie w danych; sprawdź w instrukcji/funkcjach.
+- Zestaw serię pomiarową z symulacją przy zidentyfikowanych parametrach.
+- Legenda mówi, która linia to pomiar, która model.
+
+B. Analogiczny wykres fmincon:
+- Ten sam zakres czasu i porównywalna skala osi, by porównanie było uczciwe.
+
+C. Wspólne porównanie obu metod:
+- Najlepiej te same dwie wielkości w osobnych panelach; obie symulacje i pomiar.
+- Kolory/metody w legendach muszą być spójne we wszystkich panelach.
+
+D. Zmiana parametrów w iteracjach:
+- Pokazać m, l, I jako trzy wyraźnie opisane serie.
+- Zastanowić się nad osobnymi panelami/metodami; parametry mają różne
+  jednostki i skale, zatem nie wmawiać, że identyczna skala oznacza identyczny
+  błąd. Można podać legendę z jednostkami lub pokazać parametry osobno.
+- Nie generować historii iteracji na podstawie prostego połączenia x0 i x*;
+  MUSZĄ to być prawdziwe kroki solvera zapisane przez OutputFcn lub inne
+  wiarygodne mechanizmy.
+
+E. Zmiana funkcji celu w iteracjach:
+- Oś pozioma: numer iteracji.
+- Oś pionowa: J (SSE) lub prawidłowa zdefiniowana miara.
+- Dla porównania stosować identyczne definicje funkcji celu; skala logarytmiczna
+  może być przydatna, ale musi być opisana i nie może ukrywać błędnych zer.
+
+Nie doklejaj osobnych wykresów bez powodu, ale również nie "oszczędzaj" ich
+kosztem niepokazania istotnego porównania. Użytkownik lubi czytelne bloki,
+nie rządek miniaturowych wykresów bez widocznych osi.
+
+Ważna nauczka z poprzedniego projektu: kiedy dla jednej próby algorytm kończy
+się po 1-2 iteracjach, wykres może zawierać bardzo mało punktów i wyglądać
+jak pojedyncza prosta. To NIE oznacza automatycznie błędu. Nie dopisuj
+"fikcyjnych" iteracji, żeby wykres wyglądał ładniej.
+
+9. JAK FORMUŁOWAĆ OBSERWACJE I WNIOSKI
+--------------------------------------------------------------------------------
+Obserwacja to: CO WIDAĆ w konkretnych danych.
+Wniosek to: CO Z TEGO WYNIKA i jak to odpowiada na cel ćwiczenia.
+
+Przykładowo dla Lab 2, TYLKO JEŻELI POTWIERDZAJĄ TO RZECZYWISTE WYNIKI:
+- "W przebiegu położenia wózka największe odchylenia między pomiarem a modelem
+  wystąpiły w przedziale ... s."
+- "Metoda lsqnonlin wymagała ... iteracji, a metoda fmincon ... ."
+- "Uzyskana wartość SSE była niższa dla ..., ale ... ."
+- "Niezgodności odpowiedzi wahadła są większe/mniejsze niż w przypadku wózka,
+  co widać w RMSE ... i na rysunku ... ."
+- "Ostateczne parametry obu metod różnią się o ..., mimo porównywalnego
+  dopasowania odpowiedzi. To może wskazywać na ..." - wniosek warunkowy.
+- "Algorytm zakończył obliczenia z exitflag=...; interpretacja wyniku musi
+  uwzględniać powód zatrzymania."
+
+Nie wyciągaj nieuprawnionych wniosków:
+- Mniejsza liczba iteracji != mniejszy czas CPU.
+- Najmniejsze SSE na danych dopasowania != najlepsza zdolność przewidywania
+  nowych danych.
+- Zbieżność solvera != dowód minimum globalnego.
+- Identyczne / zbliżone odpowiedzi nie muszą dowodzić identycznych parametrów.
+- Ograniczenia i punkt początkowy mogą wpływać na znalezione rozwiązanie, ale
+  nie gwarantują automatycznie minimum globalnego.
+- Brak zmiany wyniku przy zmodyfikowanej tolerancji nie jest błędem sam w sobie.
+
+Podział wniosków:
+- Oddzielne podpunkty dotyczące poszczególnych rzeczywiście przeprowadzonych
+  etapów, a na końcu "Wnioski ogólne".
+- Nie rób jednego luźnego bloku wszystkich spostrzeżeń.
+- Każdy ważniejszy wniosek uzasadnij liczbą, tabelą lub rysunkiem.
+- Nie przytaczaj wszystkich liczb drugi raz - wystarczą reprezentatywne.
+- Unikaj "lepsza metoda" bez wskazania kryterium (SSE, RMSE, iteracje, itp.).
+
+10. WZÓR KRÓTKIEGO STYLU: ODPOWIEDNIA I NIEODPOWIEDNIA FORMA
+--------------------------------------------------------------------------------
+WSTĘP DO WYNIKÓW - styl akceptowany (ilustracyjny, nie podawaj jako wynik):
+"Badania przeprowadzono dla danych pomiarowych grupy 4. Parametry modelu
+wyznaczono metodami lsqnonlin i fmincon, stosując ten sam punkt początkowy
+oraz ograniczenia przedziałowe. Otrzymane odpowiedzi modelu porównano z
+przebiegami pomiarowymi, a jakość dopasowania oceniono na podstawie ... ."
+
+WSTĘP - styl odrzucony:
+"Niniejszy rozdział prezentuje kompleksową analizę badawczą obejmującą...
+W pierwszym kroku przedstawimy, następnie dokonamy walidacji..."
+
+PODPIS WYKRESU - dobry:
+"Rys. N. Porównanie położenia wózka i kąta wahadła: pomiar, lsqnonlin i fmincon."
+(Za krótki, jeśli nie wiadomo, co przedstawiają panele - dopisz wtedy
+"górny panel..., dolny panel...".)
+
+PODPIS - zły:
+"Rys. N. Wykres wyników" albo "Rys. N. Opracowanie własne".
+
+OPIS TABLICY - dobry:
+"Tabela N. Parametry modelu i wskaźniki jakości dopasowania dla obu metod."
+
+TEORIA - dobra:
+"W celu porównania metod wykorzystano tę samą funkcję sumy kwadratów reszt.
+Dla lsqnonlin przekazano wektor reszt, a dla fmincon - odpowiadającą mu
+funkcję skalarną."
+Tę zgodność trzeba najpierw faktycznie potwierdzić w kodzie.
+
+11. CZEGO UŻYTKOWNIK NIE LUBI - LISTA ANTYWZORCÓW
+--------------------------------------------------------------------------------
+- Dużo zbytecznego tekstu przed obliczeniami.
+- Wykładowe wyprowadzanie zupełnie oczywistych szczegółów.
+- Odbieranie istniejącym równaniom edytowalności w Wordzie.
+- Pogrubianie całych akapitów i agresywne kolory.
+- Tabele z niepotrzebnym błękitnym/zielonym wypełnieniem.
+- Tabele o innym układzie niż podany przez prowadzącą.
+- Puste lub niemal puste strony wywołane sztucznym podziałem.
+- Nagłówki z różnymi wcięciami, nierówne równania, ściśnięte obliczenia.
+- Zbyt długa rozbudowana sekcja 3.1; powinna być logicznie rozdzielona.
+- Nieopisane wykresy, bez numerów, osi i jednostek.
+- Szare/nieczytelne tytuły i niekonsekwentne kolory.
+- "Źródło: opracowanie własne" powtarzane przy każdej tabeli.
+- Wymyślone, przewidywane lub ręcznie "poprawione" wyniki.
+- Uznawanie każdej różnicy względem teoretycznego optimum za błąd solvera.
+- Przekonanie, że wszystkie próby muszą dać tę samą wartość funkcji celu.
+- Bardzo rozbudowane skrypty ze skomplikowanymi abstrakcjami, obsługą błędów,
+  globalnymi zmiennymi i automatyzacją, gdy do zajęć wystarczy prosty kod.
+- W dokumentach: liczne przypadkowe strony ściśnięte po próbie zmieszczenia
+  na siłę dużych wykresów.
+
+12. PRACA Z KODEM MATLAB A SPRAWOZDANIE
+--------------------------------------------------------------------------------
+Użytkownik w Laboratorium 1 ostatecznie wolał DWA PROSTE PODEJŚCIA:
+- kody do obliczeń / uruchamiania wybranych prób podobne do kodów prowadzącej;
+- oddzielny kod do rysowania funkcji z punktami.
+W praktyce odrzucił zbyt rozbudowany skrypt automatyczny i wiele warstw
+if/else/global/error. Skrypty mają być czytelne i możliwe do uruchomienia
+przez ręczną zmianę parametrów - jak u studenta na laboratorium.
+
+Jednakże w sprawozdaniu nie wolno nazywać wyników "wygenerowanymi skryptem X",
+jeśli faktycznie nie zostały nim wygenerowane. Kody należy sprawdzić przez
+prawdziwe uruchomienie i uzgodnić z wynikami tabelarycznymi.
+
+Dla Lab 2 paczka obejmuje: Main.m, uproszczone skrypty recznie/, funkcje
+prowadzącej oraz dane. Jeśli użytkownik chce kody do oddania, ustal ich
+ostateczny zakres na podstawie instrukcji Lab 2; NIE zakładaj, że musi oddać
+ogromny automatyczny Main.m, lecz też nie wycinaj zależności niezbędnych
+do odtworzenia danych.
+
+Istotna pułapka w paczce Lab 2:
+- Funkcje prowadzącej fSimulateModel / fPlotResponseComparison zawierają
+  odwołanie do nazwy "dane1_wah_grupa1.mat", podczas gdy grupa użytkownika
+  to 4 i posiada "dane1_wah_grupa4.mat".
+- Main.m stosuje tymczasową kopię pod oczekiwaną nazwą w innym katalogu;
+  w oryginalnych funkcjach prowadzącej nie wprowadzono zmian.
+- Nie zamiataj tej rozbieżności pod dywan; jeśli trzeba, opisz ją krótko.
+
+13. WERYFIKACJA TECHNICZNA I RZECZOWA PRZED ODDAWANIEM PLIKU
+--------------------------------------------------------------------------------
+Kontrola źródeł:
+[ ] przeczytano faktyczną instrukcję Lab 2, nie tylko formatkę;
+[ ] użyto poprawnych danych grupy 4;
+[ ] wiadomo, które wyniki są z MATLAB-a, a które z wcześniejszej symulacji;
+[ ] zidentyfikowano wszystkie wymagane wielkości, tabelki i wykresy.
+
+Kontrola liczb:
+[ ] m, l, I podane w odpowiedniej kolejności i jednostkach;
+[ ] identyczna definicja celu dla porównywanych metod lub jawne wyjaśnienie;
+[ ] wartości celu/RMSE przeliczone z rzeczywistych przebiegów;
+[ ] liczba iteracji i wywołań odpowiada wyjściu solvera;
+[ ] warunek stopu odpowiada exitflag i oryginalnemu output.message;
+[ ] nie wpisano zera w miejsce NaN/Inf;
+[ ] wektor/reszty zgodne z wymiarami sygnałów i liczbą próbek;
+[ ] historie iteracji pochodzą z MATLAB-a, bez sztucznego dopisywania punktów;
+[ ] nie uznano sukcesu, gdy algorytm zatrzymał się przez limit lub błąd;
+[ ] nie skopiowano wstępnych liczb SciPy jako zweryfikowanych wyników MATLAB.
+
+Kontrola tekstu i matematyki:
+[ ] każda użyta zależność ma wyjaśnione symbole;
+[ ] parametry fizyczne mają jednostki;
+[ ] użyte wzory matematyczne są zgodne z rzeczywistym kodem;
+[ ] niezbyt dużo ani niezbyt mało wyprowadzeń;
+[ ] wnioski odpowiadają na problem postawiony w rozdziale 1;
+[ ] rozróżniono obserwacje z danych od hipotez o przyczynie różnic.
+
+Kontrola tabel i wykresów:
+[ ] każda tabela ma numer i tytuł NAD nią;
+[ ] każdy rysunek ma numer i podpis POD nim;
+[ ] każde z tych miejsc ma odwołanie w treści;
+[ ] osie, jednostki, legenda i kolory są zrozumiałe;
+[ ] opisy nie są szare/mało czytelne;
+[ ] tabele nie ucinają wartości i nie są niepotrzebnie kolorowane;
+[ ] na stronach nie ma ściany mikroskopijnych wykresów;
+[ ] nic nie wygląda jak nieprawdziwa wygenerowana historia iteracji;
+[ ] duży blok 2x2 ma przejrzyste podpisy paneli;
+[ ] brak rozdzielenia podpisu od tabeli/rysunku.
+
+Kontrola dokumentu:
+[ ] A4, TNR 11, pojedyncza interlinia, marginesy 2,5 cm, justowanie;
+[ ] nagłówki 13/12/11 wg hierarchii; równe wcięcia;
+[ ] podpisy 9 pkt, o ile użytkownik akceptuje ten kompromis z formatką;
+[ ] równania są edytowalne; numeracja (1), (2), (3)...;
+[ ] porządek stron, brak pustych i niemal pustych stron;
+[ ] brak niedokończonych zdań, pojedynczych kropek i "None" w tabelach;
+[ ] brak metadanych PDF z przypadkowym, cudzym autorem;
+[ ] oświadczenia AI osobne, zgodne z faktycznym zakresem pomocy;
+[ ] sprawozdanie PDF otwiera się i zawiera wszystkie strony;
+[ ] kod w ZIP działa na danych z paczki, ma wymagane zależności.
+
+14. OBOWIĄZEK OGLĄDANIA WIZUALNEGO DOKUMENTU
+--------------------------------------------------------------------------------
+NIE wystarczy obejrzeć tekstu z python-docx ani sprawdzić, że plik istnieje.
+W poprzedniej pracy błędy widoczne były dopiero w PDF:
+- puste strony;
+- samotny numer równania;
+- ucięte podpisy paneli;
+- nagłówki przesunięte innymi wcięciami;
+- zbyt ciasne odstępy między wzorami;
+- tabele bez obramowania;
+- nieczytelne małe etykiety wykresów;
+- ostatnie dwa wiersze wniosków pozostawione na niemal pustej stronie;
+- niewłaściwe oznaczenia legendy (kwadrat powierzchni zamiast kółka punktu).
+
+Po wygenerowaniu Worda:
+1. Renderuj do PDF lub do obrazów stron w warunkach testowych.
+2. Obejrzyj stronę tytułową, wszystkie strony z równaniami, typowe strony
+   z tabelami, miejsca łamania podrozdziałów i strony końcowe.
+3. Jeśli znajdziesz problem, popraw WORD i ponownie renderuj.
+4. Przed wysłaniem użytkownikowi sprawdź dokładną ścieżkę i czy plik
+   rzeczywiście istnieje, a następnie daj klikalny link do DOCX/PDF.
+5. Nie twierdź, że dokument jest idealny, jeżeli nie zweryfikowano liczb
+   przez uruchomienie docelowego środowiska obliczeń.
+
+15. TRYB WSPÓŁPRACY Z UŻYTKOWNIKIEM
+--------------------------------------------------------------------------------
+- Mów po polsku.
+- Jeśli prosi "popraw i wyślij Worda", wyślij gotowy plik, nie sam kod.
+- Jeśli prosi "na razie tylko pytania", odpowiadaj, nie generuj nowego pliku.
+- Jeśli zgłasza 5-10 uwag, odnieś się do każdej i implementuj je zbiorczo,
+  unikając zbędnych iteracji po jednym przecinku.
+- Gdy czegoś nie można potwierdzić, powiedz dokładnie, czego brakuje i czego
+  nie zweryfikowano; nie zgaduj wyników liczb.
+- Podkreślaj jedynie istotne błędy, a nie wymyślaj ulepszeń, kiedy tekst jest
+  już wystarczająco dobry.
+- W ocenie końcowej rozdziel "zgodność matematyczna", "zgodność z danymi",
+  "poprawność edytorska" i "gotowość do oddania".
+- Jeśli użytkownik pyta, "czy można wysyłać?", podaj jednoznaczny werdykt
+  oraz krótką listę problemów KONIECZNYCH do poprawienia. Drobne kwestie
+  kosmetyczne oznacz jako opcjonalne.
+- Styl bez nadmiernych pochwał, bez "szczerze mówiąc" i podobnych ozdobników.
+- Nie nazywaj nieuruchomionego MATLAB-a "przetestowanym".
+
+16. OSTATECZNY CEL PRACY NAD LAB 2
+--------------------------------------------------------------------------------
+Efektem ma być:
+A) Sprawozdanie .docx w pełni edytowalne, z uzasadnioną teorią, prawdziwymi
+   tabelami, podpisanymi wykresami i rzeczowymi wnioskami.
+B) Sprawozdanie .pdf do oddania, zgodne z formatką.
+C) Gdy użytkownik poprosi: mała paczka ZIP/RAR z kodami MATLAB i zależnościami,
+   uporządkowana, a nie zbiorem wszystkich historycznych wersji plików.
+
+Pierwszeństwo ma zgodność z instrukcją i autentycznymi wynikami, następnie
+czytelność, a dopiero potem estetyka. Użytkownik nie chce dokumentu, który
+"wygląda profesjonalnie", lecz sprawozdania, które da się normalnie oddać,
+zrozumieć, obronić i edytować w Wordzie.
+
+17. KRÓTKIE PODSUMOWANIE PREFERENCJI - DO SZYBKIEGO PRZYPOMNIENIA
+--------------------------------------------------------------------------------
+PISANIE:
+  bezosobowo | po studencku | rzeczowo | bez lania wody | tylko potrzebna teoria
+
+UKŁAD:
+  A4 | TNR 11 | pojedyncza interlinia | marginesy 2,5 cm | justowanie
+  główne 13 bold | podrzędne 12 bold | śródtytuły 11 bold
+  sensowne odstępy | równe lewe wyrównanie | brak pustych stron
+
+WZORY:
+  edytowalne | wyśrodkowane | numeracja (1),(2),(3) | pionowe wektory
+  wzór ogólny dla mniej oczywistych metod | bez zbędnego rozdmuchiwania
+
+TABELE:
+  układ zgodny z instrukcją | białe pola | czarne obramowania
+  wyśrodkowane | numer+podpis nad | bez "Źródło: opracowanie własne"
+
+RYSUNKI:
+  prawdziwe dane | czytelne opisy | kompletne jednostki | logiczne bloki
+  numer+podpis pod | odwołania w tekście | nie wstawiać zbędnych trajektorii
+
+WNIOSKI:
+  rozdzielone na etapy | poparte liczbami/tabelą/rysunkiem | bez nadinterpretacji
+
+LAB 2:
+  identyfikacja m,l,I | grupa 4 | lsqnonlin vs fmincon | pomiar vs model
+  parametry i funkcja celu w iteracjach | nie mylić SciPy z MATLAB-em
+
+ODDANIE:
+  Word roboczy + PDF końcowy | kody w ZIP/RAR | AI oświadczenia zgodne z prawdą
+
+KONIEC WSADU.
+================================================================================
