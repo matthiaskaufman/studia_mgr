@@ -1,0 +1,9 @@
+x0=[4,3];
+A=[]; %nierownosci liniowe
+B=[]; %wektor wyrazow wolnych dla macierzy A
+Aeq=[3,2]; %rownania liniowe
+Beq=8;%wektor wyrazow wolnych dla macierzy Aeq
+LB = []';
+UB = []';
+options = optimoptions('fmincon','Algorithm','interior-point');
+[xmin,feval,exitflag,output,lambda,grad,hessian]=fmincon(@lagrange_fun,x0,[],[],Aeq,Beq,LB,UB,@lagrange_con,options)
