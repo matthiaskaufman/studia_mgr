@@ -6,8 +6,6 @@ from tqdm import tqdm
 from environment import Environment
 from model import Yacht
 
-
-
 def main():
     environment = Environment.createFromJson('data/trasa1.json')
     yacht = Yacht(environment)
@@ -16,8 +14,8 @@ def main():
 
     for t, y, u in tqdm(yacht, total=yacht.countSteps()):
         # for t, y, u in yacht:
-        u.rudderAngle = deg2rad(10)
-        u.sailAngle = deg2rad(10)
+        u.rudderAngle = deg2rad(30)
+        u.sailAngle = deg2rad(30)
         # print(u)
         # print('czas = ',t)
         # print(y.state.psi)

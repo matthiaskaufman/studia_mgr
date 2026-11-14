@@ -1,0 +1,11 @@
+ZAINICJUJ parametry rozkładu (np. średnia = punkt_startowy, odchylenie_standardowe = wartosc_poczatkowa)
+ZAINICJUJ rozmiar populacji N oraz ułamek elity (np. najlepsze 20%)
+
+DOPÓKI (nie spełniono warunku stopu):
+    1. Wygeneruj N losowych próbek z aktualnego rozkładu prawdopodobieństwa.
+    2. Dla każdej próbki oblicz wartość funkcji celu.
+    3. Posortuj próbki rosnąco według wartości funkcji celu.
+    4. Wybierz grupę najlepszych próbek (tzw. zbiór elitarny).
+    5. Zaktualizuj parametry rozkładu (średnią i odchylenie standardowe) na podstawie punktów ze zbioru elitarnego.
+    
+ZWRÓĆ średnią z ostatniego rozkładu jako znalezione minimum.

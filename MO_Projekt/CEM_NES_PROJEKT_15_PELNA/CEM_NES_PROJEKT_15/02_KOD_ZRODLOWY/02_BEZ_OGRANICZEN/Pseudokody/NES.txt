@@ -1,0 +1,11 @@
+ZAINICJUJ parametry rozkładu (np. wektor średnich mu, macierz kowariancji Sigma)
+ZAINICJUJ rozmiar populacji N oraz współczynnik uczenia (learning rate) alpha
+
+DOPÓKI (nie spełniono warunku stopu):
+    1. Wygeneruj N losowych próbek z wielowymiarowego rozkładu normalnego o parametrach (mu, Sigma).
+    2. Dla każdej próbki oblicz jej przystosowanie (wartość funkcji celu).
+    3. (Opcjonalnie) Zastosuj przekształcenie wartości funkcji celu (tzw. fitness shaping), np. zamianę na rangi, aby zniwelować wpływ ekstremalnych wartości.
+    4. Oblicz szacowany gradient względem parametrów rozkładu (mu, Sigma), bazując na wartościach funkcji celu i wygenerowanych próbkach.
+    5. Zaktualizuj parametry (mu, Sigma), przesuwając je o krok alpha w kierunku wskazanym przez gradient (w stronę minimum).
+    
+ZWRÓĆ mu jako znalezione rozwiązanie optymalne.

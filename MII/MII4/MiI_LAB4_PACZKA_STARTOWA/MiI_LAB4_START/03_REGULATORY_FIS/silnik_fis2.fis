@@ -1,0 +1,49 @@
+[System]
+Name='silnik_fis2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='uchyb'
+Range=[-150 150]
+NumMFs=3
+MF1='ujemny':'trapmf',[-200 -150 -20 0]
+MF2='zero':'trimf',[-60 0 60]
+MF3='dodatni':'trapmf',[0 20 150 200]
+
+[Input2]
+Name='calka_uchybu'
+Range=[-20 20]
+NumMFs=3
+MF1='mala':'trapmf',[-100 -20 -2 0]
+MF2='srednia':'trimf',[-3 0 3]
+MF3='duza':'trapmf',[0 2 20 100]
+
+[Output1]
+Name='napiecie_Ut'
+Range=[0 400]
+NumMFs=5
+MF1='bardzo_male':'trimf',[-100 0 100]
+MF2='male':'trimf',[0 100 200]
+MF3='srednie':'trimf',[100 200 300]
+MF4='duze':'trimf',[200 300 400]
+MF5='bardzo_duze':'trimf',[300 400 500]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+1 3, 3 (1) : 1
+2 1, 2 (1) : 1
+2 2, 3 (1) : 1
+2 3, 4 (1) : 1
+3 1, 3 (1) : 1
+3 2, 4 (1) : 1
+3 3, 5 (1) : 1
