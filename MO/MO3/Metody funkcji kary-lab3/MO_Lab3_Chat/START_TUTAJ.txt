@@ -1,0 +1,36 @@
+METODY OPTYMALIZACJI - LABORATORIUM, WARIANT b
+
+1. Wypakuj caly folder i trzymaj pliki razem.
+2. Uruchom MATLAB z Optimization Toolbox (fmincon i fminunc).
+3. Zamknij arkusz Wyniki_i_wykresy.xlsx, jesli jest otwarty w Excelu.
+4. Otworz MO_lab3_automat.m i kliknij Run lub wpisz MO_lab3_automat.
+5. Skrypt sam przeliczy Lagrange'a/KKT, fmincon, metode funkcji kary,
+   utworzy szesc plikow PNG w Wykresy_png i PODMIENI wyniki oraz obrazy
+   wykresow bezposrednio w Wyniki_i_wykresy.xlsx.
+6. Otworz Excel. Arkusze: Podsumowanie, Punkty_KKT, Funkcja_kary,
+   Wykresy, Ustawienia. Formuly Excela zostana przeliczone po otwarciu.
+7. Opracowanie.docx: wersja zalecana do edycji rownan w Microsoft Word.
+   Opracowanie.doc: dodatkowa wersja zgodnosciowa starszego Worda.
+
+PODFOLDER Skrypty_reczne:
+  01_Lagrange.m         - podstawienie, rownanie pochodnej, KKT
+  02_fmincon.m          - fmincon dla x0 i drugi start
+  03_funkcja_kary.m     - kara kwadratowa, kolejne r
+  04_wykresy.m          - poziomice i wykres przestrzenny
+
+Kazdy plik pomocniczy zawiera sekcje %% - mozna uruchamiac krokowo
+w MATLAB Live Editor i zapisac kopie przez Save As -> Live Script (*.mlx).
+Sa to zwykle edytowalne pliki .m, bez uzaleznienia od formatu .mlx.
+
+ZAWARTOSC WYNIKOW:
+  W Excelu sa juz dane i zdjecia referencyjne obliczone w Python/SciPy.
+  Po uruchomieniu .m dane te zostana nadpisane wynikami MATLAB.
+  Z uwagi na lokalny charakter algorytmow drobne roznice sa normalne.
+
+UWAGA:
+  Skrypt zostal przygotowany na podstawie zalaczonych instrukcji,
+  ale nie byl uruchamiany w MATLAB (brak MATLAB w tym srodowisku).
+  Przed oddaniem sprawozdania sprawdz plik po uruchomieniu na komputerze.
+  Instrukcja przypisuje warianty a-h; przyjeto wariant b jak w przeslanym
+  poprzednim sprawozdaniu. W razie innego przydzialu trzeba zmienic
+  rownania, ograniczenia i obliczenia (to NIE jest automatyczny wybor wariantu).

@@ -1,0 +1,4 @@
+Te cztery krotkie skrypty pokazuja etapy obliczen osobno. Kazdy jest niezalezny.
+Otworz wybrany plik .m. Sekcje %% mozna uruchamiac kolejno przyciskiem Run Section.
+Aby otrzymac natywny Live Script, uzyj MATLAB: Save As -> MATLAB Live Script (*.mlx).
+Skrypty pomocnicze nie eksportuja Excela. Robi to MO_lab3_automat.m w folderze glownym.
