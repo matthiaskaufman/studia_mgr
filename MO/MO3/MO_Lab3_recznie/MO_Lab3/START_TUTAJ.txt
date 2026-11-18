@@ -1,0 +1,33 @@
+METODY OPTYMALIZACJI - WARIANT B (WERSJA RECZNA)
+
+1. Wypakuj folder MO_Lab3.
+2. W MATLAB-ie ustaw MO_Lab3 jako Current Folder.
+3. Otworz Main.m i kliknij Run.
+4. Wyniki wyswietla sie w Command Window, a tabele beda tez w Workspace:
+   Tabela_Lagrange, Tabela_fmincon, Tabela_kara, Tabela_porownanie.
+5. W oknach Figure pojawi sie 6 wykresow:
+   1 - poziomice i ograniczenia,
+   2-5 - powierzchnie funkcji kary,
+   6 - wplyw parametru kary.
+6. Wybierz okno Figure i zapisz je recznie: File > Save As / Export > PNG.
+   Mozesz tez zrobic zrzut ekranu po ustawieniu odpowiedniego widoku.
+7. Aby przeniesc wyniki do Excela, otworz dana tabele z Workspace
+   i skopiuj zaznaczone komorki.
+
+PROGRAM NICZEGO NIE ZAPISUJE I NIE USUWA Z DYSKU.
+Main.m automatycznie liczy trzy metody i wyswietla wyniki,
+ale zapis wykresow i danych pozostaje reczny.
+
+W plikach sa fragmenty adaptowane z przykladow prowadzacej:
+lagrange.m, lagrange_fun.m, lagrange_example1.m,
+lagrange_example2.m, penalty_ex1.m i penalty_ex3_iter.m.
+
+Dodatkowo: Lagrange_analitycznie.docx z wyprowadzeniem rownan.
+
+MATLAB: wymagany Optimization Toolbox (fsolve, fmincon, fminunc).
+Wariant b: f=100*(x2-x1^2)^2+(1-x1)^2,
+g=x1+x2-2=0, h=x1+x2-3<=0.
+Punkt startowy: [-1 2]; kary r=[1 10 100 1000].
+
+Nie weryfikowano wykonania w MATLAB-ie, dlatego wyniki
+nalezy sprawdzic po uruchomieniu na swoim komputerze.
